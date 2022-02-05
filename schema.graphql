@@ -1,9 +1,22 @@
 type Query {
-    getAllPeople:[String]
+    getAllPeople:[Person]
 }
 
 type Mutation {
    deleteAllData:String
+}
+
+type Person{
+    name: String
+    score: Int
+    gender: String
+    school: String
+    playType: String
+    hand: String
+    age: String
+    id: Int
+    popular: Int
+    record:[String]
 }
 
 

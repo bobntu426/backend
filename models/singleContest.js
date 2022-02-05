@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 // Creating a schema, sort of like working with an ORM
-const peopleSchema = new Schema({
+const contestSchema = new Schema({
     name: {
         type: String,
         required: [true, 'name field is required.']
@@ -30,14 +30,11 @@ const peopleSchema = new Schema({
     },
     record: {
         type: [String],
-    },
-    popular: {
-        type: Number,
     }
     
 });
 
 
-const People = mongoose.model('people', peopleSchema);
+const Contest = mongoose.model('contest', contestSchema);
 
-export default People;
+export default Contest;
