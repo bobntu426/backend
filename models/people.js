@@ -33,6 +33,9 @@ const peopleSchema = new Schema({
     },
     popular: {
         type: Number,
+    },
+    rank: {
+        type: Number,
     }
     
 });

@@ -1,5 +1,8 @@
 type Query {
     getAllPeople:[Person]
+    getTwentyPeople(minimum:Int,maximum:Int):[Person]
+    getOnePerson(id:Int):Person
+    getAllPeopleNum:Int
 }
 
 type Mutation {
@@ -17,6 +20,7 @@ type Person{
     id: Int
     popular: Int
     record:[String]
+    rank: Int
 }
 
 
