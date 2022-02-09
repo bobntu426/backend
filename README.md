@@ -5,7 +5,8 @@
 - [ ] getAllEvent
 - [ ] getComingEvent
 - [ ] getLiveEvent
-- [ ] 
+- [ ] getAllEventNum
+- [ ] deleteAllEvent
 - [ ] 
 - [ ] 
 - [ ] 
