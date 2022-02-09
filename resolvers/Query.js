@@ -15,6 +15,7 @@ const Query = {
   },
   async getOnePerson(parent, {id}, { db }, info) {
     let person = null
+    
     if(id){
       [person] = await People.find({id:id})
     }

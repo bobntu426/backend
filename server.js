@@ -83,8 +83,7 @@ db.once('open', () => {
         {name:'洪英傑',score:200,school:'台灣大學',id:19,popular:15,gender:'male',rank:20},
         {name:'李英星',score:100,school:'台北科技大學',id:20,popular:15,gender:'male',rank:21},
         {name:'巫家軒',score:1850,school:'交通大學',id:21,popular:15,gender:'male',rank:3},
-      ]),
-      
+      ])
       console.log('init data')
     }
   })

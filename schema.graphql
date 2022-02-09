@@ -1,5 +1,6 @@
 type Query {
     getAllPeople:[Person]
+    getAllEvent:[Event]
     getTwentyPeople(minimum:Int,maximum:Int):[Person]
     getOnePerson(id:Int):Person
     getAllPeopleNum:Int
@@ -23,4 +24,20 @@ type Person{
     rank: Int
 }
 
+type Event{
+    name: String
+    date: Date
+    location: String
+    host: String
+    info: String
+    id: Int
+    state: EventState
+    result: Object
+}
+
+enum EventState{
+    finish
+    live
+    coming
+}
 
