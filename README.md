@@ -2,11 +2,11 @@
 
 #### GFM task list
 
-- [ ] getAllEvent
-- [ ] getComingEvent
-- [ ] getLiveEvent
-- [ ] getAllEventNum
-- [ ] deleteAllEvent
+- [x] getAllEvent
+- [x] getComingEvent
+- [x] getLiveEvent
+- [x] getAllEventNum
+- [x] deleteAllEvent
 - [ ] 
 - [ ] 
 - [ ] 

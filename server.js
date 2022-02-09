@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv-defaults'
 import Query from './resolvers/Query'
 import Mutation from './resolvers/Mutation'
-import Subscription from './resolvers/Subscription'
 import { GraphQLServer, PubSub } from 'graphql-yoga'
 import cors from 'cors'
 import express from 'express'
@@ -65,33 +64,98 @@ db.once('open', () => {
     if(people.length == 0){
       await People.insertMany([
         {name:'張峻林',score:2000,school:'台灣大學',id:1,popular:15,gender:'male',rank:1},
-        {name:'張家翔',score:1900,school:'台灣大學',id:2,popular:15,gender:'male',rank:2},
-        {name:'張育杰',score:1800,school:'輔仁大學',id:3,popular:15,gender:'male',rank:4},
-        {name:'陳烱濤',score:1700,school:'台灣大學',id:4,popular:15,gender:'male',rank:5},
-        {name:'任家良',score:1600,school:'慈濟大學',id:5,popular:15,gender:'male',rank:6},
-        {name:'林恭緯',score:1500,school:'聯合大學',id:6,popular:15,gender:'male',rank:7},
-        {name:'陳乃深',score:1400,school:'中原大學',id:7,popular:15,gender:'male',rank:8},
-        {name:'李柏諺',score:1300,school:'台灣大學',id:8,popular:15,gender:'male',rank:9},
-        {name:'葉昇翰',score:1200,school:'高雄科技大學',id:9,popular:15,gender:'male',rank:10},
-        {name:'張友柏',score:1100,school:'逢甲大學',id:10,popular:15,gender:'male',rank:11},
-        {name:'張霈承',score:1000,school:'中央大學',id:11,popular:15,gender:'male',rank:12},
-        {name:'彭偉豪',score:900,school:'台灣師範大學',id:12,popular:15,gender:'male',rank:13},
-        {name:'陳睿恩',score:800,school:'台灣大學',id:13,popular:15,gender:'male',rank:14},
-        {name:'劉又嘉',score:700,school:'台灣大學',id:14,popular:15,gender:'male',rank:15},
-        {name:'許兆鈞',score:600,school:'台灣大學',id:15,popular:15,gender:'male',rank:16},
-        {name:'李書涵',score:500,school:'輔仁大學',id:16,popular:15,gender:'male',rank:17},
-        {name:'林育靖',score:400,school:'台灣大學',id:17,popular:15,gender:'male',rank:18},
-        {name:'何翊碩',score:300,school:'輔仁大學',id:18,popular:15,gender:'male',rank:19},
-        {name:'洪英傑',score:200,school:'台灣大學',id:19,popular:15,gender:'male',rank:20},
-        {name:'李英星',score:100,school:'台北科技大學',id:20,popular:15,gender:'male',rank:21},
-        {name:'巫家軒',score:1850,school:'交通大學',id:21,popular:15,gender:'male',rank:3},
+        {name:'張家翔',score:1950,school:'台灣大學',id:2,popular:15,gender:'male',rank:2},
+        {name:'張育杰',score:1900,school:'輔仁大學',id:3,popular:15,gender:'male',rank:3},
+        {name:'陳烱濤',score:1850,school:'台灣大學',id:4,popular:15,gender:'male',rank:4},
+        {name:'任家良',score:1800,school:'慈濟大學',id:5,popular:15,gender:'male',rank:5},
+        {name:'林恭緯',score:1750,school:'聯合大學',id:6,popular:15,gender:'male',rank:6},
+        {name:'陳乃深',score:1700,school:'中原大學',id:7,popular:15,gender:'male',rank:7},
+        {name:'李柏諺',score:1650,school:'台灣大學',id:8,popular:15,gender:'male',rank:8},
+        {name:'葉昇翰',score:1600,school:'高雄科技大學',id:9,popular:15,gender:'male',rank:9},
+        {name:'張友柏',score:1550,school:'逢甲大學',id:10,popular:15,gender:'male',rank:10},
+        {name:'張霈承',score:1500,school:'中央大學',id:11,popular:15,gender:'male',rank:11},
+        {name:'彭偉豪',score:1450,school:'台灣師範大學',id:12,popular:15,gender:'male',rank:12},
+        {name:'陳睿恩',score:1400,school:'台灣大學',id:13,popular:15,gender:'male',rank:13},
+        {name:'劉又嘉',score:1350,school:'台灣大學',id:14,popular:15,gender:'male',rank:14},
+        {name:'許兆鈞',score:1300,school:'台灣大學',id:15,popular:15,gender:'male',rank:15},
+        {name:'李書涵',score:1250,school:'輔仁大學',id:16,popular:15,gender:'male',rank:16},
+        {name:'林育靖',score:1200,school:'台灣大學',id:17,popular:15,gender:'male',rank:17},
+        {name:'何翊碩',score:1150,school:'輔仁大學',id:18,popular:15,gender:'male',rank:18},
+        {name:'洪英傑',score:1100,school:'台灣大學',id:19,popular:15,gender:'male',rank:19},
+        {name:'李英星',score:1050,school:'台北科技大學',id:20,popular:15,gender:'male',rank:20},
+        {name:'巫家軒',score:1000,school:'交通大學',id:21,popular:15,gender:'male',rank:21},
+        {name:'羅東祐',score:950,school:'逢甲大學',id:22,popular:15,gender:'male',rank:22},
+        {name:'陳昱維',score:900,school:'陽交大學',id:23,popular:15,gender:'male',rank:23},
+        {name:'邱冠翔',score:850,school:'陽交大學',id:24,popular:15,gender:'male',rank:24},
+        {name:'趙奐凱',score:800,school:'台灣科技大學',id:25,popular:15,gender:'male',rank:25},
+        {name:'李彥霆',score:750,school:'台灣科技大學',id:26,popular:15,gender:'male',rank:26},
+        {name:'陳泓鈞',score:700,school:'台北大學',id:27,popular:15,gender:'male',rank:27},
+        {name:'陳品州',score:650,school:'台北大學',id:28,popular:15,gender:'male',rank:28},
+        {name:'張子賢',score:600,school:'台灣大學',id:29,popular:15,gender:'male',rank:39},
+        {name:'林亮昕',score:550,school:'台灣大學',id:30,popular:15,gender:'male',rank:30},
+        {name:'周芊妤',score:2000,school:'台灣大學',id:31,popular:15,gender:'female',rank:1},
+        {name:'張沄芳',score:1900,school:'台灣大學',id:32,popular:15,gender:'female',rank:2},
+        {name:'王昀中',score:1800,school:'台灣大學',id:33,popular:15,gender:'female',rank:3},
+        {name:'林宜慧',score:1700,school:'海洋大學',id:34,popular:15,gender:'female',rank:4},
+        {name:'盧奐妤',score:1600,school:'政治大學',id:35,popular:15,gender:'female',rank:5},
+        {name:'鄭伃倢',score:1500,school:'政治大學',id:36,popular:15,gender:'female',rank:6},
+        {name:'黃姝寧',score:1400,school:'輔仁大學',id:37,popular:15,gender:'female',rank:7},
+        {name:'黃舒珩',score:1300,school:'輔仁大學',id:38,popular:15,gender:'female',rank:8},
+        {name:'賀培瑄',score:1200,school:'長庚大學',id:39,popular:15,gender:'female',rank:9},
+        {name:'廖珮妤',score:1100,school:'長庚大學',id:40,popular:15,gender:'female',rank:10},
+        {name:'陳玠璇',score:1000,school:'逢甲大學',id:41,popular:15,gender:'female',rank:11},
+        {name:'林佳葭',score:900,school:'逢甲大學',id:42,popular:15,gender:'female',rank:12},
       ])
       console.log('init people')
     }
     if(event.length == 0){
       await Event.insertMany([
-        {name: "輔大盃", date: new Date(), location: "泰山體育館", host: "輔仁大學", info: "", id: 1, state: "coming"}, 
-        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 2, state: "coming"}
+        {name: "輔大盃", date: new Date(), location: "泰山體育館", host: "輔仁大學", info: "", id: 1, state: "coming",}, 
+        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 2, state: "coming"},
+        {name: "家翔盃", date: new Date(), location: "家翔大學", host: "家翔大學", info: "", id: 3, state: "live"},
+        {
+          name: "北商盃", date: new Date(), location: "台北商業大學", host: "台北商業大學", info: "", id: 4, state: "finish",
+          result:{
+            manGroup:{
+              first:'陽明交通大學紅',
+              second:'高雄科技大學',
+              third:['台灣大學A','台灣科技大學A']
+            },
+            womanGroup:{
+              first:'台灣大學A',
+              second:'陽明交通大學紅',
+              third:['逢甲大學','台北科大']
+            },
+            manSingle:{
+              first:1,
+              second:6,
+              third:[9,22]
+            },
+            womanSingle:{
+              first:31,
+              second:32,
+              third:[33,34]
+            },
+            manDouble:{
+              first:'w',
+              second:'w',
+              
+              third:['w','y']
+            },
+            womanDouble:{
+              first:'w',
+              second:'w',
+              
+              third:['w','y']
+            },
+            mixDouble:{
+              first:'w',
+              second:'w',
+              
+              third:['w','y']
+            },
+          }
+        },
       ])
       console.log('init event')
     }

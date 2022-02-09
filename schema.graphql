@@ -1,19 +1,23 @@
 type Query {
-    getAllPeople:[Person]
-    getAllEvent:[Event]
-    getTwentyPeople(minimum:Int,maximum:Int):[Person]
+    getAllPeople(gender:Gender):[Person]
+    getTwentyPeople(minimum:Int,maximum:Int,gender:Gender):[Person]
     getOnePerson(id:Int):Person
-    getAllPeopleNum:Int
+    getAllPeopleNum(gender:Gender):Int
+
+    getEvent(state:EventState):[Event]
+    getEventNum(state:EventState):Int
+
 }
 
 type Mutation {
-   deleteAllData:String
+    deleteAllPeople:String
+    deleteAllEvent:String
 }
 
 type Person{
     name: String
     score: Int
-    gender: String
+    gender: Gender
     school: String
     playType: String
     hand: String
@@ -35,26 +39,33 @@ type Event{
     result: ResultType
 }
 
+
+type ResultType{
+    manGroup:ResultRank
+    womanGroup:ResultRank
+    manSingle:ResultRank
+    womanSingle:ResultRank
+    manDouble:ResultRank
+    womanDouble:ResultRank
+    mixDouble:ResultRank
+}
 enum EventState{
     finish
     live
     coming
 }
 
-enum EventState{
-    finish
-    live
-    coming
+type ResultRank{
+    first:String
+    second:String
+    third:[String]
+    fourth:String
 }
 
 
-enum gender{
+enum Gender{
     male
     female
     mix
 }
-type ResultType{
-    group:gender
-    single:gender
-    double:gender
-}
+
