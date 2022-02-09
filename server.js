@@ -7,6 +7,7 @@ import { GraphQLServer, PubSub } from 'graphql-yoga'
 import cors from 'cors'
 import express from 'express'
 import People from './models/people'
+import Event from './models/event'
 const pubsub = new PubSub()
 const app = express()
 app.use(cors())
@@ -59,6 +60,7 @@ db.once('open', () => {
   const PORT = process.env.port || 4000
   server.start({ port: PORT }, async() => {
     const people = await People.find()
+    const event = await Event.find()
     console.log(`The server is up on port ${PORT}!`)
     if(people.length == 0){
       await People.insertMany([
@@ -83,9 +85,17 @@ db.once('open', () => {
         {name:'洪英傑',score:200,school:'台灣大學',id:19,popular:15,gender:'male',rank:20},
         {name:'李英星',score:100,school:'台北科技大學',id:20,popular:15,gender:'male',rank:21},
         {name:'巫家軒',score:1850,school:'交通大學',id:21,popular:15,gender:'male',rank:3},
-      ]),
+      ])
       
-      console.log('init data')
+      console.log('init people')
+    }
+    if(event.length == 0){
+      await Event.insertMany([
+        {name: "輔大盃", date: new Date(), location: "泰山體育館", host: "輔仁大學", info: "", id: 1, state: false}, 
+        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 2, state: false}
+      ])
+
+      console.log('init event')
     }
   })
 })
