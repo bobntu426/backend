@@ -23,7 +23,7 @@ const eventSchema = new Schema({
         type: Number,
     },
     state: {
-        type: Boolean,
+        type: String,
     },
     result: {
         type: Object,

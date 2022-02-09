@@ -91,8 +91,8 @@ db.once('open', () => {
     }
     if(event.length == 0){
       await Event.insertMany([
-        {name: "輔大盃", date: new Date(), location: "泰山體育館", host: "輔仁大學", info: "", id: 1, state: false}, 
-        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 2, state: false}
+        {name: "輔大盃", date: new Date(), location: "泰山體育館", host: "輔仁大學", info: "", id: 1, state: "coming"}, 
+        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 2, state: "coming"}
       ])
 
       console.log('init event')

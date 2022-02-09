@@ -2,25 +2,25 @@
 
 #### GFM task list
 
-- [x] GFM task list 1
-- [x] GFM task list 2
-- [ ] GFM task list 3
-- [ ] GFM task list 3-1
-- [ ] GFM task list 3-2
-- [ ] GFM task list 3-3
-- [ ] GFM task list 4
-- [ ] GFM task list 4-1
-- [ ] GFM task list 4-2
+- [ ] getAllEvent
+- [ ] getComingEvent
+- [ ] getLiveEvent
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
 
 >
 
-### Ã¸»sªí®æ Tables
+### Ã¸ï¿½sï¿½ï¿½ï¿½ï¿½ Tables
 
-| ±M®×        | »ù®æ   |  ¼Æ¶q  |
+| ï¿½Mï¿½ï¿½        | ï¿½ï¿½ï¿½ï¿½   |  ï¿½Æ¶q  |
 | --------   | -----:  | :----:  |
-| ­pºâ¾÷      | $1600   |   5     |
-| ¤â¾÷        |   $12   |   12   |
-| ºÞ½u        |    $1    |  234  |
+| ï¿½pï¿½ï¿½ï¿½      | $1600   |   5     |
+| ï¿½ï¿½ï¿½        |   $12   |   12   |
+| ï¿½Þ½u        |    $1    |  234  |
 
 
 | Function name | Description                    |
