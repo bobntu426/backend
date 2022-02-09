@@ -26,13 +26,13 @@ type Person{
 
 type Event{
     name: String
-    date: Date
+    date: String
     location: String
     host: String
     info: String
     id: Int
     state: EventState
-    result: Object
+    result: ResultType
 }
 
 enum EventState{
@@ -41,3 +41,20 @@ enum EventState{
     coming
 }
 
+enum EventState{
+    finish
+    live
+    coming
+}
+
+
+enum gender{
+    male
+    female
+    mix
+}
+type ResultType{
+    group:gender
+    single:gender
+    double:gender
+}
