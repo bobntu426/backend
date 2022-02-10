@@ -1,8 +1,8 @@
 type Query {
-    getAllPeople(gender:Gender):[Person]
+    getPeople(gender:Gender):[Person]
     getTwentyPeople(minimum:Int,maximum:Int,gender:Gender):[Person]
-    getOnePerson(id:Int):Person
-    getAllPeopleNum(gender:Gender):Int
+    getPersonById(id:Int):Person
+    getPeopleNum(gender:Gender):Int
 
     getEvent(state:EventState):[Event]
     getEventNum(state:EventState):Int

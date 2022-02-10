@@ -3,7 +3,7 @@ import Event from '../models/event'
 
 const Query = {
 
-  async getAllPeople(parent, {gender}, { db }, info) {
+  async getPeople(parent, {gender}, { db }, info) {
     let people = await People.find().limit(100).sort({score:-1})
     if(gender)
       people=people.filter((p)=>p.gender==gender)
@@ -27,7 +27,7 @@ const Query = {
       
     return people
   },
-  async getOnePerson(parent, {id}, { db }, info) {
+  async getPersonById(parent, {id}, { db }, info) {
     let person = null
     
     if(id){
@@ -35,7 +35,7 @@ const Query = {
     }
     return person
   },
-  async getAllPeopleNum(parent, {gender}, { db }, info) {
+  async getPeopleNum(parent, {gender}, { db }, info) {
     let peopleNum = 0
     if(gender)
       peopleNum = await People.count({gender:gender})
