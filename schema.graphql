@@ -1,9 +1,9 @@
 type Query {
     getPeople(gender:Gender):[Person]
-    getTwentyPeople(minimum:Int,maximum:Int,gender:Gender):[Person]
+    getRankSingleData(minimum:Int,maximum:Int,gender:Gender):[Person]
+    getRankDoubleData(minimum:Int,maximum:Int,gender:Gender):[Double]
     getPersonById(id:Int):Person
-    getPeopleNum(gender:Gender):Int
-
+    getCount(gender:Gender,type:NumberType):Int
     getEvent(state:EventState):[Event]
     getEventNum(state:EventState):Int
 
@@ -12,6 +12,7 @@ type Query {
 type Mutation {
     deleteAllPeople:String
     deleteAllEvent:String
+    deleteAllDouble:String
 }
 
 type Person{
@@ -39,6 +40,15 @@ type Event{
     result: ResultType
 }
 
+type Double{
+    player: [Person]
+    score: String
+    gender: String
+    id: Int
+    rank: Int
+    school:String
+}
+
 
 type ResultType{
     manGroup:ResultRank
@@ -63,9 +73,16 @@ type ResultRank{
 }
 
 
+
 enum Gender{
     male
     female
     mix
+}
+
+enum NumberType{
+    single
+    double
+    group
 }
 

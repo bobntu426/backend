@@ -1,6 +1,7 @@
 import People from '../models/people'
 import Event from '../models/event'
 import bcrypt from 'bcryptjs'
+import Double from '../models/double'
 const Mutation = {
   async deleteAllPeople(parent, args, { db, pubsub }, info) {
     try{
@@ -13,6 +14,12 @@ const Mutation = {
       await Event.deleteMany({})
     }catch{}
     return 'all event has been deleted'
+  },
+  async deleteAllDouble(parent, args, { db, pubsub }, info) {
+    try{
+      await Double.deleteMany({})
+    }catch{}
+    return 'all double has been deleted'
   }
 }
 

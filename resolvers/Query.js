@@ -1,5 +1,6 @@
 import People from '../models/people'
 import Event from '../models/event'
+import Double from '../models/double'
 
 const Query = {
 
@@ -9,39 +10,46 @@ const Query = {
       people=people.filter((p)=>p.gender==gender)
     return people
   },
-  async getTwentyPeople(parent, {minimum,maximum,gender}, { db }, info) {
-    let people
-    if(gender)
-      people = await People.find({ 
+  async getRankSingleData(parent, {minimum,maximum,gender}, { db }, info) {
+    const data = await People.find({ 
         $and: [ 
           { rank: { $gte: minimum } }, { rank: { $lte: maximum }},{gender:gender} 
         ]
       })
       .sort({score:-1})
-    else
-      people = await People.find({ 
+    return data
+  },
+  async getRankDoubleData(parent, {minimum,maximum,gender}, { db }, info) {
+    let data = await Double.find({ 
         $and: [ 
-          { rank: { $gte: minimum } }, { rank: { $lte: maximum } }
+          { rank: { $gte: minimum } }, { rank: { $lte: maximum }},{gender:gender} 
         ]
-      }).sort({score:-1})
-      
-    return people
+      })
+      .sort({score:-1})
+    data=data.map(async(d)=>{
+      let player = ['',''];
+      [player[0]] = await People.find({id:d.player[0]});
+      [player[1]] = await People.find({id:d.player[1]});
+      d.player[0] = player[0]
+      d.player[1] = player[1]
+      return d
+    })
+    return data
   },
   async getPersonById(parent, {id}, { db }, info) {
     let person = null
-    
     if(id){
       [person] = await People.find({id:id})
     }
     return person
   },
-  async getPeopleNum(parent, {gender}, { db }, info) {
-    let peopleNum = 0
-    if(gender)
-      peopleNum = await People.count({gender:gender})
-    else
-      peopleNum = await People.count()
-    return peopleNum
+  async getCount(parent, {gender,type}, { db }, info) {
+    let number = 0
+    if(type=='single')
+      number = await People.count({gender:gender})
+    else if(type=='double')
+      number = await Double.count({gender:gender})
+    return number
   },
   async getEvent(parent, {state}, { db }, info) {
     let event = await Event.find()

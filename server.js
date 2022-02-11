@@ -7,6 +7,7 @@ import cors from 'cors'
 import express from 'express'
 import People from './models/people'
 import Event from './models/event'
+import Double from './models/double'
 const pubsub = new PubSub()
 const app = express()
 app.use(cors())
@@ -60,6 +61,7 @@ db.once('open', () => {
   server.start({ port: PORT }, async() => {
     const people = await People.find()
     const event = await Event.find()
+    const double = await Double.find()
     console.log(`The server is up on port ${PORT}!`)
     if(people.length == 0){
       await People.insertMany([
@@ -105,8 +107,25 @@ db.once('open', () => {
         {name:'廖珮妤',score:1100,school:'長庚大學',id:40,popular:15,gender:'female',rank:10},
         {name:'陳玠璇',score:1000,school:'逢甲大學',id:41,popular:15,gender:'female',rank:11},
         {name:'林佳葭',score:900,school:'逢甲大學',id:42,popular:15,gender:'female',rank:12},
+        {name:'梁維珊',score:850,school:'輔仁大學',id:43,popular:15,gender:'female',rank:13},
+        {name:'朱家儀',score:800,school:'台灣大學',id:44,popular:15,gender:'female',rank:14},
       ])
       console.log('init people')
+    }
+    if(double.length == 0){
+      await Double.insertMany([
+        {player:[23,24],score:900,school:'陽交大學',id:1,gender:'male',rank:1},
+        {player:[25,26],score:800,school:'台灣科技大學',id:2,gender:'male',rank:2}, 
+        {player:[27,28],score:700,school:'台北大學',id:3,gender:'male',rank:3},
+        {player:[29,30],score:600,school:'台灣大學',id:4,gender:'male',rank:4},
+        {player:[35,36],score:1600,school:'政治大學',id:5,gender:'female',rank:1},
+        {player:[37,38],score:1400,school:'輔仁大學',id:6,gender:'female',rank:2},
+        {player:[39,40],score:1200,school:'長庚大學',id:7,gender:'female',rank:3},
+        {player:[41,42],score:1000,school:'逢甲大學',id:8,gender:'female',rank:4},
+        {player:[1,43],score:1200,school:'輔仁大學',id:9,gender:'mix',rank:1},
+        {player:[3,44],score:1000,school:'台灣大學',id:10,gender:'mix',rank:2}
+      ])
+      console.log('init double')
     }
     if(event.length == 0){
       await Event.insertMany([
@@ -137,22 +156,14 @@ db.once('open', () => {
               third:[33,34]
             },
             manDouble:{
-              first:'w',
-              second:'w',
-              
-              third:['w','y']
+              first:1,
+              second:2,
+              third:[3,4]
             },
             womanDouble:{
-              first:'w',
-              second:'w',
-              
-              third:['w','y']
-            },
-            mixDouble:{
-              first:'w',
-              second:'w',
-              
-              third:['w','y']
+              first:1,
+              second:2,
+              third:[3,4]
             },
           }
         },
