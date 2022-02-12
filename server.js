@@ -107,8 +107,8 @@ db.once('open', () => {
         {name:'廖珮妤',score:1100,school:'長庚大學',id:40,popular:15,gender:'female',rank:10},
         {name:'陳玠璇',score:1000,school:'逢甲大學',id:41,popular:15,gender:'female',rank:11},
         {name:'林佳葭',score:900,school:'逢甲大學',id:42,popular:15,gender:'female',rank:12},
-        {name:'梁維珊',score:850,school:'輔仁大學',id:43,popular:15,gender:'female',rank:13},
-        {name:'朱家儀',score:800,school:'台灣大學',id:44,popular:15,gender:'female',rank:14},
+        {name:'梁維珊',score:850,school:'台灣大學',id:43,popular:15,gender:'female',rank:13},
+        {name:'朱家儀',score:800,school:'輔仁大學',id:44,popular:15,gender:'female',rank:14},
       ])
       console.log('init people')
     }
