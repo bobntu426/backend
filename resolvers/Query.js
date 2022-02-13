@@ -43,6 +43,13 @@ const Query = {
     }
     return person
   },
+  async getEventById(parent, {id}, { db }, info) {
+    let event = null
+    if(id){
+      [event] = await Event.find({id:id})
+    }
+    return event
+  },
   async getCount(parent, {gender,type}, { db }, info) {
     let number = 0
     if(type=='single')

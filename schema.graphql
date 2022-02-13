@@ -1,12 +1,12 @@
 type Query {
     getPeople(gender:Gender):[Person]
-    getRankSingleData(minimum:Int,maximum:Int,gender:Gender):[Person]
+    getRankSingleData(minimum:Int,maximum:Int,gender:Gender,name:String,rank:Int,school:String):[Person]
     getRankDoubleData(minimum:Int,maximum:Int,gender:Gender):[Double]
     getPersonById(id:Int):Person
+    getEventById(id:Int):Event
     getCount(gender:Gender,type:NumberType):Int
     getEvent(state:EventState):[Event]
     getEventNum(state:EventState):Int
-
 }
 
 type Mutation {
