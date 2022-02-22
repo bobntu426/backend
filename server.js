@@ -132,14 +132,14 @@ db.once('open', () => {
     if(school.length == 0){
       await School.insertMany([
         {name:'臺灣大學',id:1},
-        {name:'陽交大學',id:2,eventName:'交大盃'},
-        {name:'輔仁大學',id:3,eventName:'輔大盃'},
-        {name:'中興大學',id:4,eventName:'興大盃'},
-        {name:'臺北商業大學',id:5,eventName:'北商盃'},
-        {name:'台灣師範大學',id:6,eventName:'師大盃'},
-        {name:'成功大學',id:7,eventName:'成大盃'},
-        {name:'靜宜大學',id:8,eventName:'靜宜盃'},
-        {name:'淡江大學',id:9,eventName:'淡大盃'},
+        {name:'陽交大學',id:3,eventName:'交大盃'},
+        {name:'輔仁大學',id:1,eventName:'輔大盃'},
+        {name:'中興大學',id:5,eventName:'興大盃'},
+        {name:'臺北商業大學',id:9,eventName:'北商盃'},
+        {name:'台灣師範大學',id:4,eventName:'師大盃'},
+        {name:'成功大學',id:8,eventName:'成大盃'},
+        {name:'靜宜大學',id:6,eventName:'靜宜盃'},
+        {name:'淡江大學',id:2,eventName:'淡大盃'},
         {name:'虎尾科技大學',id:10,eventName:'虎科盃'},
       ])
       console.log('init school')
@@ -156,6 +156,7 @@ db.once('open', () => {
         {name: "靜宜盃", date: new Date(), location: "靜宜大學", host: "靜宜大學", info: "", id: 8, state: "finish",age:1,schoolId:6},
         {name: "家翔盃", date: new Date(), location: "家翔大學", host: "家翔大學", info: "", id: 9, state: "live",age:1,schoolId:7},
         {name: "成大盃", date: new Date(), location: "成功大學", host: "成功大學", info: "", id: 10, state: "finish",age:1,schoolId:8},
+        {name: "虎科盃", date: new Date(), location: "虎尾科技大學", host: "虎尾科技大學", info: "", id: 12, state: "finish",age:1,schoolId:10},
         {
           name: "北商盃", date: new Date(), location: "台北商業大學", host: "台北商業大學", info: "", id: 11, state: "finish",schoolId:9,
           result:{

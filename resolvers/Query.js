@@ -44,13 +44,6 @@ const Query = {
     }
     return person
   },
-  async getEventById(parent, {id}, { db }, info) {
-    let event = null
-    if(id){
-      [event] = await Event.find({id:id})
-    }
-    return event
-  },
   async getCount(parent, {gender,type}, { db }, info) {
     let number = 0
     if(type=='single')
@@ -59,12 +52,16 @@ const Query = {
       number = await Double.count({gender:gender})
     return number
   },
-  async getEvent(parent, {state,name}, { db }, info) {
+  async getEvent(parent, {state,name,schoolId,eventId}, { db }, info) {
     let event = await Event.find()
     if(state)
       event=event.filter((e)=>e.state==state)
     if(name)
       event=event.filter((e)=>e.name==name)
+    if(schoolId)
+      event = event.filter((s)=>s.schoolId==schoolId)
+    if(eventId)
+      event = event.filter((s)=>s.id==eventId)
     return event
   },
   async getEventNum(parent, {state}, { db }, info) {
@@ -75,10 +72,12 @@ const Query = {
       eventNum = await Event.count()
     return eventNum
   },
-  async getSchool(parent, {mustHasEvent}, { db }, info) {
+  async getSchool(parent, {mustHasEvent,id}, { db }, info) {
     let school = await School.find()
     if(mustHasEvent)
-      school = school.filter((s)=>s.eventName)
+      school=school.filter((s)=>s.eventName)
+    if(id)
+    school=school.filter((s)=>s.id==id)
     return school
   },
   async getSchoolNum(parent, {mustHasEvent}, { db }, info) {
