@@ -27,6 +27,12 @@ const eventSchema = new Schema({
     },
     result: {
         type: Object,
+    },
+    age:{
+        type: Number
+    },
+    schoolId:{
+        type: Number
     }
 });
 

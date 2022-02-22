@@ -8,6 +8,7 @@ import express from 'express'
 import People from './models/people'
 import Event from './models/event'
 import Double from './models/double'
+import School from './models/school'
 const pubsub = new PubSub()
 const app = express()
 app.use(cors())
@@ -62,6 +63,7 @@ db.once('open', () => {
     const people = await People.find()
     const event = await Event.find()
     const double = await Double.find()
+    const school = await School.find()
     console.log(`The server is up on port ${PORT}!`)
     if(people.length == 0){
       await People.insertMany([
@@ -127,13 +129,35 @@ db.once('open', () => {
       ])
       console.log('init double')
     }
+    if(school.length == 0){
+      await School.insertMany([
+        {name:'臺灣大學',id:1},
+        {name:'陽交大學',id:2,eventName:'交大盃'},
+        {name:'輔仁大學',id:3,eventName:'輔大盃'},
+        {name:'中興大學',id:4,eventName:'興大盃'},
+        {name:'臺北商業大學',id:5,eventName:'北商盃'},
+        {name:'台灣師範大學',id:6,eventName:'師大盃'},
+        {name:'成功大學',id:7,eventName:'成大盃'},
+        {name:'靜宜大學',id:8,eventName:'靜宜盃'},
+        {name:'淡江大學',id:9,eventName:'淡大盃'},
+        {name:'虎尾科技大學',id:10,eventName:'虎科盃'},
+      ])
+      console.log('init school')
+    }
     if(event.length == 0){
       await Event.insertMany([
-        {name: "輔大盃", date: new Date(), location: "泰山體育館", host: "輔仁大學", info: "", id: 1, state: "coming",}, 
-        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 2, state: "coming"},
-        {name: "家翔盃", date: new Date(), location: "家翔大學", host: "家翔大學", info: "", id: 3, state: "live"},
+        {name: "輔大盃", date: new Date(), location: "板樹體育館", host: "輔仁大學", info: "", id: 1, state: "coming",age:20,schoolId:1}, 
+        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 2, state: "coming",age:12,schoolId:2},
+        {name: "輔大盃", date: new Date(), location: "泰山體育館", host: "輔仁大學", info: "", id: 3, state: "finish",age:19,schoolId:1}, 
+        {name: "淡大盃", date: new Date(), location: "淡江大學", host: "淡江大學", info: "", id: 4, state: "finish",age:11,schoolId:2},
+        {name: "交大盃", date: new Date(), location: "陽交大學", host: "陽交大學", info: "", id: 5, state: "finish",age:1,schoolId:3},
+        {name: "師大盃", date: new Date(), location: "師範大學", host: "師範大學", info: "", id: 6, state: "finish",age:1,schoolId:4},
+        {name: "興大盃", date: new Date(), location: "中興大學", host: "中興大學", info: "", id: 7, state: "finish",age:1,schoolId:5},
+        {name: "靜宜盃", date: new Date(), location: "靜宜大學", host: "靜宜大學", info: "", id: 8, state: "finish",age:1,schoolId:6},
+        {name: "家翔盃", date: new Date(), location: "家翔大學", host: "家翔大學", info: "", id: 9, state: "live",age:1,schoolId:7},
+        {name: "成大盃", date: new Date(), location: "成功大學", host: "成功大學", info: "", id: 10, state: "finish",age:1,schoolId:8},
         {
-          name: "北商盃", date: new Date(), location: "台北商業大學", host: "台北商業大學", info: "", id: 4, state: "finish",
+          name: "北商盃", date: new Date(), location: "台北商業大學", host: "台北商業大學", info: "", id: 11, state: "finish",schoolId:9,
           result:{
             manGroup:{
               first:'陽明交通大學紅',

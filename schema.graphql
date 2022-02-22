@@ -5,14 +5,17 @@ type Query {
     getPersonById(id:Int):Person
     getEventById(id:Int):Event
     getCount(gender:Gender,type:NumberType):Int
-    getEvent(state:EventState):[Event]
+    getEvent(state:EventState,name:String):[Event]
     getEventNum(state:EventState):Int
+    getSchool(mustHasEvent:Boolean):[School]
+    getSchoolNum(mustHasEvent:Boolean):Int
 }
 
 type Mutation {
     deleteAllPeople:String
     deleteAllEvent:String
     deleteAllDouble:String
+    deleteAllSchool:String
 }
 
 type Person{
@@ -38,6 +41,8 @@ type Event{
     id: Int
     state: EventState
     result: ResultType
+    age: Int
+    schoolId: Int 
 }
 
 type Double{
@@ -48,7 +53,12 @@ type Double{
     rank: Int
     school:String
 }
-
+type School{
+    name:String
+    eventName:String
+    id:Int
+    record:[String]
+}
 
 type ResultType{
     manGroup:ResultRank
@@ -85,4 +95,5 @@ enum NumberType{
     double
     group
 }
+
 

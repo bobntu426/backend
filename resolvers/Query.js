@@ -1,6 +1,7 @@
 import People from '../models/people'
 import Event from '../models/event'
 import Double from '../models/double'
+import School from '../models/school'
 
 const Query = {
 
@@ -58,10 +59,12 @@ const Query = {
       number = await Double.count({gender:gender})
     return number
   },
-  async getEvent(parent, {state}, { db }, info) {
+  async getEvent(parent, {state,name}, { db }, info) {
     let event = await Event.find()
     if(state)
       event=event.filter((e)=>e.state==state)
+    if(name)
+      event=event.filter((e)=>e.name==name)
     return event
   },
   async getEventNum(parent, {state}, { db }, info) {
@@ -71,6 +74,20 @@ const Query = {
     else
       eventNum = await Event.count()
     return eventNum
+  },
+  async getSchool(parent, {mustHasEvent}, { db }, info) {
+    let school = await School.find()
+    if(mustHasEvent)
+      school = school.filter((s)=>s.eventName)
+    return school
+  },
+  async getSchoolNum(parent, {mustHasEvent}, { db }, info) {
+    let schoolNum
+    if(!mustHasEvent)
+      schoolNum = await School.count()
+    else
+      schoolNum = await School.count({ eventName: { $exists: true } })
+    return schoolNum
   },
   
 }
