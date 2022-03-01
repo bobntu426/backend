@@ -16,7 +16,9 @@ const schoolSchema = new Schema({
     record: {
         type: [String],
     },
-    
+    accountId:{
+        type: Number
+    }
 });
 
 

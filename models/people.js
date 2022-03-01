@@ -36,6 +36,18 @@ const peopleSchema = new Schema({
     },
     rank: {
         type: Number,
+    },
+    identity:{
+        type: String
+    },
+    email:{
+        type:String
+    },
+    password:{
+        type:String
+    },
+    accountId:{
+        type: Number
     }
     
 });

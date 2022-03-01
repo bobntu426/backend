@@ -1,13 +1,14 @@
 type Query {
-    getPeople(gender:Gender):[Person]
+    getPeople(gender:Gender,accountId:Int):[Person]
     getRankSingleData(minimum:Int,maximum:Int,gender:Gender,name:String,rank:Int,school:String):[Person]
     getRankDoubleData(minimum:Int,maximum:Int,gender:Gender):[Double]
     getPersonById(id:Int):Person
     getCount(gender:Gender,type:NumberType):Int
-    getEvent(state:EventState,name:String,schoolId:Int,eventId:Int):[Event]
+    getEvent(state:EventState,name:String,schoolId:Int,eventId:Int,accountId:Int):[Event]
     getEventNum(state:EventState):Int
-    getSchool(mustHasEvent:Boolean,id:Int):[School]
+    getSchool(mustHasEvent:Boolean,id:Int,accountId:Int):[School]
     getSchoolNum(mustHasEvent:Boolean):Int
+    getAdministratorById(id:Int):Administrator
 }
 
 type Mutation {
@@ -15,6 +16,7 @@ type Mutation {
     deleteAllEvent:String
     deleteAllDouble:String
     deleteAllSchool:String
+    checkPassword(name:String,password:String): CheckPassword
 }
 
 type Person{
@@ -29,6 +31,13 @@ type Person{
     popular: Int
     record:[String]
     rank: Int
+    identity: Identity
+    password:String
+}
+type Administrator{
+    name: String
+    id: Int
+    password:String
 }
 
 type Event{
@@ -68,6 +77,10 @@ type ResultType{
     womanDouble:ResultRank
     mixDouble:ResultRank
 }
+type CheckPassword{
+    success:Boolean
+    name:String
+}
 enum EventState{
     finish
     live
@@ -93,6 +106,10 @@ enum NumberType{
     single
     double
     group
+}
+enum Identity{
+    user
+    administrator
 }
 
 

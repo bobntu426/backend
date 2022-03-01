@@ -33,6 +33,9 @@ const eventSchema = new Schema({
     },
     schoolId:{
         type: Number
+    },
+    accountId:{
+        type: Number
     }
 });
 

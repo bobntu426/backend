@@ -9,6 +9,8 @@ import People from './models/people'
 import Event from './models/event'
 import Double from './models/double'
 import School from './models/school'
+import Administrator from './models/administrator'
+import bcrypt from 'bcryptjs'
 const pubsub = new PubSub()
 const app = express()
 app.use(cors())
@@ -64,10 +66,19 @@ db.once('open', () => {
     const event = await Event.find()
     const double = await Double.find()
     const school = await School.find()
+    const administrator = await Administrator.find()
     console.log(`The server is up on port ${PORT}!`)
+    if(administrator.length == 0){
+      const saltRounds = 10
+      const password = bcrypt.hashSync('130679872', saltRounds)
+      await Administrator.insertMany([
+        {name:'bob',password:password,id:1},
+      ])
+      console.log('init administrator')
+    }
     if(people.length == 0){
       await People.insertMany([
-        {name:'張峻林',score:2000,school:'台灣大學',id:1,popular:15,gender:'male',rank:1},
+        {name:'張峻林',score:2000,school:'台灣大學',id:1,popular:15,gender:'male',rank:1,password:'123456789'},
         {name:'張家翔',score:1950,school:'台灣大學',id:2,popular:15,gender:'male',rank:2},
         {name:'張育杰',score:1900,school:'輔仁大學',id:3,popular:15,gender:'male',rank:3},
         {name:'陳烱濤',score:1850,school:'台灣大學',id:4,popular:15,gender:'male',rank:4},

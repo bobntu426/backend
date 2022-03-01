@@ -3,6 +3,7 @@ import Event from '../models/event'
 import bcrypt from 'bcryptjs'
 import Double from '../models/double'
 import School from '../models/school'
+import Administrator from '../models/administrator'
 const Mutation = {
   async deleteAllPeople(parent, args, { db, pubsub }, info) {
     try{
@@ -27,7 +28,15 @@ const Mutation = {
       await School.deleteMany({})
     }catch{}
     return 'all school has been deleted'
-  }
+  },
+  
+  async checkPassword(parent, {name,password}, { db, pubsub }, info) {
+    const [user] = await Administrator.find({ name: name })
+    if (!user) {
+      return {success:false,name:name}
+    }
+    return {success:bcrypt.compareSync(password, user.password),name:name}
+  },
 }
 
 export default Mutation

@@ -2,6 +2,7 @@ import People from '../models/people'
 import Event from '../models/event'
 import Double from '../models/double'
 import School from '../models/school'
+import Administrator from '../models/administrator'
 
 const Query = {
 
@@ -88,7 +89,10 @@ const Query = {
       schoolNum = await School.count({ eventName: { $exists: true } })
     return schoolNum
   },
-  
+  async getAdministratorById(parent, {id}, { db }, info) {
+    const [administrator] = await Administrator.find({id:id})
+    return administrator
+  },
 }
 
 export default Query
