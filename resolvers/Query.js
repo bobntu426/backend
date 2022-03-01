@@ -6,10 +6,12 @@ import Administrator from '../models/administrator'
 
 const Query = {
 
-  async getPeople(parent, {gender}, { db }, info) {
+  async getPeople(parent, {gender,accountId}, { db }, info) {
     let people = await People.find().limit(100).sort({score:-1})
     if(gender)
       people=people.filter((p)=>p.gender==gender)
+    if(accountId)
+      people = people.filter((s)=>s.accountId==accountId)
     return people
   },
   async getRankSingleData(parent, {minimum,maximum,gender}, { db }, info) {
@@ -53,7 +55,7 @@ const Query = {
       number = await Double.count({gender:gender})
     return number
   },
-  async getEvent(parent, {state,name,schoolId,eventId}, { db }, info) {
+  async getEvent(parent, {state,name,schoolId,accountId,eventId}, { db }, info) {
     let event = await Event.find()
     if(state)
       event=event.filter((e)=>e.state==state)
@@ -63,6 +65,8 @@ const Query = {
       event = event.filter((s)=>s.schoolId==schoolId)
     if(eventId)
       event = event.filter((s)=>s.id==eventId)
+    if(accountId)
+      event = event.filter((s)=>s.accountId==accountId)
     return event
   },
   async getEventNum(parent, {state}, { db }, info) {
@@ -73,12 +77,14 @@ const Query = {
       eventNum = await Event.count()
     return eventNum
   },
-  async getSchool(parent, {mustHasEvent,id}, { db }, info) {
+  async getSchool(parent, {mustHasEvent,id,accountId}, { db }, info) {
     let school = await School.find()
     if(mustHasEvent)
       school=school.filter((s)=>s.eventName)
     if(id)
     school=school.filter((s)=>s.id==id)
+    if(accountId)
+      school = school.filter((s)=>s.accountId==accountId)
     return school
   },
   async getSchoolNum(parent, {mustHasEvent}, { db }, info) {
