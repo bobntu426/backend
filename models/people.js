@@ -13,7 +13,10 @@ const peopleSchema = new Schema({
     gender: {
         type: String,
     },
-    school: {
+    school:{
+        type:String,
+    },
+    schoolId: {
         type: String,
     },
     playType: {
@@ -22,8 +25,8 @@ const peopleSchema = new Schema({
     hand: {
         type: String,
     },
-    age: {
-        type: String,
+    birthday: {
+        type: Date,
     },
     id: {
         type: Number,
@@ -37,18 +40,6 @@ const peopleSchema = new Schema({
     rank: {
         type: Number,
     },
-    identity:{
-        type: String
-    },
-    email:{
-        type:String
-    },
-    password:{
-        type:String
-    },
-    accountId:{
-        type: Number
-    }
     
 });
 

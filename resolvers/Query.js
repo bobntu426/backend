@@ -15,12 +15,15 @@ const Query = {
     return people
   },
   async getRankSingleData(parent, {minimum,maximum,gender}, { db }, info) {
-    const data = await People.find({ 
+    const newPlayers = await People.find({$and:[{rank:0},{gender:gender}]})
+    let data = await People.find({ 
         $and: [ 
           { rank: { $gte: minimum } }, { rank: { $lte: maximum }},{gender:gender} 
         ]
       })
       .sort({score:-1})
+    
+    data = data.concat(newPlayers)
     return data
   },
   async getRankDoubleData(parent, {minimum,maximum,gender}, { db }, info) {
@@ -85,6 +88,7 @@ const Query = {
     school=school.filter((s)=>s.id==id)
     if(accountId)
       school = school.filter((s)=>s.accountId==accountId)
+    
     return school
   },
   async getSchoolNum(parent, {mustHasEvent}, { db }, info) {
@@ -99,6 +103,7 @@ const Query = {
     const [administrator] = await Administrator.find({id:id})
     return administrator
   },
+  
 }
 
 export default Query

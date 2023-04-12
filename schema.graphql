@@ -17,6 +17,7 @@ type Mutation {
     deleteAllDouble:String
     deleteAllSchool:String
     checkPassword(name:String,password:String): CheckPassword
+    createPerson(name:String,schoolId:Int,gender:Gender,hand:String,playType:String,birthday:String):String
 }
 
 type Person{

@@ -144,7 +144,7 @@ db.once('open', () => {
       await School.insertMany([
         {name:'臺灣大學',id:1},
         {name:'陽交大學',id:3,eventName:'交大盃'},
-        {name:'輔仁大學',id:1,eventName:'輔大盃'},
+        {name:'輔仁大學',id:7,eventName:'輔大盃'},
         {name:'中興大學',id:5,eventName:'興大盃'},
         {name:'臺北商業大學',id:9,eventName:'北商盃'},
         {name:'台灣師範大學',id:4,eventName:'師大盃'},
@@ -206,5 +206,5 @@ db.once('open', () => {
       ])
       console.log('init event')
     }
-  })
+   })
 })
