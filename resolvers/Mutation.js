@@ -37,7 +37,7 @@ const Mutation = {
     }
     return {success:bcrypt.compareSync(password, user.password),name:name}
   },
-  async createPerson(parent, {name,schoolId,gender,hand,playType,birthday}, { db }, info) {
+  async createPerson(parent, {name,schoolId,gender,hand,playType}, { db }, info) {
     const peopleNum = await People.count()
     const [school] = await School.find({id:schoolId})
     try{
@@ -50,7 +50,7 @@ const Mutation = {
         id:peopleNum+1,
         hand:hand,
         playType:playType,
-        birthday:new Date(birthday),
+        //birthday:new Date(birthday),
         rank:0,
         popular:0
       })
